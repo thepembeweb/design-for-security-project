@@ -1,0 +1,35 @@
+1) Identify tools that will allow you to do the following:
+
+    a. Scan infrastructure as code templates
+    - Cfripper - https://github.com/Skyscanner/cfripper
+    - CloudFormation Template Scanner - https://www.cloudconformity.com/solutions/aws/cloudformation-template-scanner.html
+    - Cloudsploit - https://cloudsploit.com/cloudformation
+
+    Example vulnerability
+    - Wrong assignment to AWS Role on a resource
+    - EC2SecurityGroupMissingEgressRule: Missing egress rule in NoIngressSecurityGroup means all traffic is allowed outbound. Make this explicit if it is desired configuration
+    - Change in the encryption of a database
+    
+    b. Scan AMI’s or containers for OS vulnerabilities
+    - Anchore - https://anchore.com
+    - Trivy - https://github.com/aquasecurity/trivy
+    - Clair - https://github.com/quay/clair
+    
+    Example vulnerability
+    - Permissive system configurations for outside connections
+    - OS outdated version vulnerabilities
+    - Libraries outdated vulnerabilities
+
+    c. Scan an AWS environment for cloud configuration vulnerabilities
+    - AWS inspector
+    - AWS Config
+    - AWS Security Hub
+    - Cloudwatch alarms
+    - Cloudtrail
+    - AWS Guard Duty
+
+    Example vulnerability
+    - Accounts without MFA policies
+    - Instances configured to allow users to log in with root credentials over SSH, without having to use a command authenticated by a public key.
+    - Credentials without rotation policies
+    - Very permissive IAM Policies or Roles
