@@ -1,0 +1,31 @@
+Vulnerabilities:
+
+Web service instance EC2
+- TCP port 20 is reachable from the internet. Inspector agent can be installed on this instance to check for any process listening on this port.
+- UDP port 21 is reachable from the internet. Inspector agent can be installed on this instance to check for any process listening on this port. 
+- UDP port 23 is reachable from the internet. Inspector agent can be installed on this instance to check for any process listening on this port. 
+
+S3 Buckets (cand-c3-free-recipes, cand-c3-private-recipes)
+- s3-default-encryption-kms -> Amazon S3 bucket is not encrypted with AWS KMS key.
+- s3-bucket-replication-enabled -> Amazon S3 buckets haven't have cross-region replication enabled.
+- s3-bucket-logging-enabled -> Logging is not enabled for the S3 buckets.
+- s3-bucket-versioning-enabled -> Versioning is not enabled for the S3 buckets. 
+- s3-bucket-server-side-encryption-enabled -> Amazon S3 bucket either doesn't have S3 default encryption enabled or 
+  the S3 bucket policy doesn't explicitly denies put-object requests without server side encryption.
+- s3-bucket-default-lock-enabled -> S3 Bucket lock is not enabled.
+- s3-bucket-ssl-requests-only -> S3 buckets doesn't have policies that require requests to use Secure Socket Layer (SSL).
+
+Remediation recommendations:
+1) For AttackInstanceSG, ensure no security groups allow ingress from 0.0.0.0/0 to port 22
+
+2) For WebAppSG, ensure no security groups allow ingress from 0.0.0.0/0 to port 22 and 3389
+
+3) S3 Block Public Access & Use VPC Endpoints to block requests that do not originate from your VPC network.
+
+4) Security groups used as a second layer to restrict traffic to and from your cloud hosts and instances
+
+5) Apply ACLs for incoming traffic to all subnets based on trusted networks.
+
+6) Use of firewalls to provide the ability to granularly restrict and control network traffic to and from cloud VPCs, subnets and instances
+
+7) Use regularly tools like Cfripper for the CloudFormation scripts
