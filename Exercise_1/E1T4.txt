@@ -1,0 +1,15 @@
+Poor practice 1
+The first poor practice displayed here is that the s3 buckets do not follow the principle of least privilege.
+S3 buckets are private by default and can be accessed only by users that are explicitly granted access. 
+However, applying the principle of least privilege, it's a best practice to restrict access to your resources to the people that absolutely need it. 
+You can restrict access to your S3 buckets or objects by:
+1. Writing AWS Identity and Access Management (IAM) user policies
+2. Writing bucket policies that define access to specific buckets and objects. 
+3. Using Amazon S3 Block Public Access as a centralized way to limit public access. 
+4. Setting access control lists (ACLs) on your buckets and objects.
+
+
+Poor practice 2
+The second poor practice displayed here is that both public and private subnet network ACL rules allow all traffic on all ports from all ports.
+Network ACL rules should be used to minimise the available network connectivity to reduce the traffic that can be sent to and from the subnet. 
+This reduces the chance of malicious actions that could be performed against the infrastructure by an attacker, and keeps the private subnet (and its contents) private.
