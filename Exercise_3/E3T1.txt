@@ -1,0 +1,8 @@
+AWS GuardDuty findings:
+- One instance (i-0e4a010618a08488b) was being used to perform an SSH brute force attack
+- Another instance (i-0bdc67294febca80d) was being attacked by an SSH brute force attack
+
+How GuardDuty may have detected this attack:
+Amazon GuardDuty analyzes and processes data from AWS CloudTrail event logs, VPC Flow Logs, and DNS logs to detect unauthorized and unexpected activity in an AWS environment.
+The details of this attack can be found in the VPC flow logs that are written to S3. The logs will show an amount of requests sent from the one instance to a specific 
+IP indicating that the instance is being used for an SSH brute force attack.
