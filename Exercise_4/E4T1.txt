@@ -1,0 +1,15 @@
+1) Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+- Disable passwords for SSH on the application server. This is because passwords enabled for SSH leave the server open to brute force SSH attacks
+- Setup AWS GuardDuty so that you can monitor CloudTrail, DNS, and VPC flow logs to identify suspicious activity like ssh brute force attempts
+- Restrict network traffic that can reach the application server
+- Implement a AWS native cloud based Web Application Firewall to defend against application level exploits. 
+    1. Test and Fine Tune WAF Rules to rule out false positives.
+    2. Perform penetration and exploit testing against applications to ensure that the WAF defends as expected.
+    3. Enable WAF logging and export logs to your security monitoring tools.
+    4. Move public endpoints for the application behind the following services: CloudFront, Application Load Balancers and API Gateway.
+
+2) Neither instance should have had access to the secret recipes bucket, in the event that instance API credentials were compromised how could we have prevented access to sensitive data.
+- Use least privilege access for the existing instance role profile to only allow access to specific buckets rather than using a wildcard selector. We could also further resrict access by using a bucket policy.
+- For additional protection for s3 contents:
+  - Enable server-side encryption on the S3 bucket
+  - Restrict the instance profile role to only read from S3 until the application requires the ability to write.
